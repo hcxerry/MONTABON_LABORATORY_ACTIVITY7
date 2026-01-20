@@ -1,8 +1,5 @@
-package com.store.order;
+package com.store.payment;
 
-public enum OrderStatus {
-    PENDING,
-    PAID,
-    SHIPPED,
-    CANCELLED
+public interface Payable {
+    void pay();
 }
