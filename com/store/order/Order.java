@@ -12,17 +12,16 @@ public abstract class Order {
         this.status = OrderStatus.PENDING;
     }
 
-    // Abstract method (Abstraction)
     public abstract void processOrder();
 
     // Concrete method
     public String getOrderSummary() {
         return "Order ID: " + orderId +
-               ", Amount: " + amount +
+               ", Amount: ₱" + amount +
                ", Status: " + status;
     }
 
-    // Getters (Encapsulation)
+    // Getters 
     public int getOrderId() {
         return orderId;
     }
@@ -35,16 +34,16 @@ public abstract class Order {
         return status;
     }
 
-    // Setter with validation
+    // Setter 
     public void setAmount(double amount) {
         if (amount >= 0) {
             this.amount = amount;
         } else {
-            System.out.println("Invalid amount. Cannot be negative.");
+            System.out.println("The amount is invalid. It cannot be negative.");
         }
     }
 
-    // Protected setter for subclasses
+    // Protected setter 
     protected void setStatus(OrderStatus status) {
         this.status = status;
     }
