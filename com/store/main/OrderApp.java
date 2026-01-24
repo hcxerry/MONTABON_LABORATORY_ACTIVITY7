@@ -10,7 +10,7 @@ public class OrderApp {
 
         ArrayList<Order> orders = new ArrayList<>();
 
-        // Add at least three orders
+        // Adding three orders
         OnlineOrder o1 = new OnlineOrder(101, 1500.00);
         OnlineOrder o2 = new OnlineOrder(102, 2500.00);
         OnlineOrder o3 = new OnlineOrder(103, 500.00);
@@ -19,15 +19,13 @@ public class OrderApp {
         orders.add(o2);
         orders.add(o3);
 
-        // Simulate processing
+        // processing order
         o1.processOrder();
         o1.pay();
 
-        // Manually cancel one order for testing
+        // showcase how cancellation works via subclass behavior
         o3.processOrder();
-        // Access via protected method inside same package not allowed here
-        // So we simulate cancellation via subclass behavior
-        // (Alternative approach shown below)
+        
         cancelOrder(o3);
 
         // Iterator traversal
@@ -44,11 +42,10 @@ public class OrderApp {
         }
     }
 
-    // Helper method to cancel order safely
+    // Helper method to cancel order without issues
     private static void cancelOrder(Order order) {
         if (order instanceof OnlineOrder) {
             ((OnlineOrder) order).processOrder();
-            // Using subclass-protected access
             try {
                 java.lang.reflect.Method method =
                         Order.class.getDeclaredMethod("setStatus", OrderStatus.class);
